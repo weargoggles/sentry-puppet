@@ -63,6 +63,9 @@ Puppet::Reports.register_report(:sentry) do
         Raven.configure do |config|
             config.dsn = CONFIG[:sentry_dsn]
             config.current_environment = @environment
+            config.environments = [@environment]
+            config.timeout = 5
+            config.open_timeout = 5
         end
 
         # Get the important looking stuff to sentry
